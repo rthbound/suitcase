@@ -19,8 +19,8 @@ module Suitcase
   # room availability, fetching images and just general
   # information providing.
   class Hotel
-    extend Suitcase::Helpers
-
+    extend Helpers
+    
     AMENITIES = { pool: 1,
       fitness_center: 2,
       restaurant: 3,

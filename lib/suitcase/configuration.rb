@@ -67,5 +67,17 @@ module Suitcase
     def self.use_hotwire_linkshare_id?
       defined? @@hotwire_linkshare_id
     end
+    
+    def self.cleartrip_api_key=(key)
+      @@cleartrip_api_key = key
+    end
+    
+    def self.cleartrip_api_key
+      @@cleartrip_api_key if cleartrip_api_key?
+    end
+    
+    def self.cleartrip_api_key?
+      defined? @@cleartrip_api_key
+    end
   end
 end

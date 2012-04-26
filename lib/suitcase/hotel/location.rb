@@ -1,7 +1,7 @@
 module Suitcase
   class Hotel
     class Location
-      extend Suitcase::Helpers
+      extend Helpers
 
       attr_accessor :destination_id, :type, :active, :city, :province, :country, :country_code
 

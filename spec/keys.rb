@@ -6,10 +6,10 @@
 # Or configure with a block:
 
 Suitcase.configure do |config|
-  config.hotel_api_key = "your_api_key_here"
-  config.hotel_cid = "your_cid_here"
-  # config.hotel_shared_secret = "none"
-  # config.use_signature_auth = false
+  config.hotel_api_key = "t3d74e8t58k2nh55gyph3cje"
+  config.hotel_cid = "55505"
+  config.hotwire_api_key = "krdr2wa25nq8p9mgtdq4y659"
+  config.cleartrip_api_key = "06727f45f04e23e1e68eb1067cd0c6b9"
 end
 
 module Keys

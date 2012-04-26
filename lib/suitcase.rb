@@ -23,4 +23,6 @@ require 'suitcase/hotel/payment_option'
 require 'suitcase/hotel/hotel'
 require 'suitcase/hotel/image'
 
+require 'suitcase/flight/flight'
+
 require 'suitcase/car_rental'

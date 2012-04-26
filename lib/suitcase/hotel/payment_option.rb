@@ -1,7 +1,7 @@
 module Suitcase
   class PaymentOption
    attr_accessor :code, :name
-   extend Suitcase::Helpers
+   extend Hotel::Helpers
 
     def initialize(code, name)
       @code = code
