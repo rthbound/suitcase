@@ -286,7 +286,7 @@
         if message =~ /Multiple locations/ && (info = info[key]["LocationInfos"])
           exception.type = :multiple_locations
           exception.recovery = {
-            alternate_locations: info["LocationInfo"].map { |h| h["code"] }
+            alternate_locations: info["LocationInfo"]
           }
         end
 
