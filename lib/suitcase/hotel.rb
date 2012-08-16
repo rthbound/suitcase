@@ -66,9 +66,9 @@ module Suitcase
     # Returns a single Hotel if an ID is passed in, or an Array of Hotels.
     def self.find(info)
       if info[:ids]
-        find_by_ids(info[:ids], info[:session])
+        find_by_ids(info, info[:session])
       elsif info[:id]
-        find_by_id(info[:id], info[:session])
+        find_by_id(info, info[:session])
       else
         find_by_info(info)
       end
@@ -80,9 +80,8 @@ module Suitcase
     # session - A Session with session data.
     #
     # Returns a single Hotel.
-    def self.find_by_id(id, session)
-      params = { hotelId: id }
-
+    def self.find_by_id(info, session)
+      params = { hotelId: info[:id]}.merge!(info.reject{|k,v| k == :id})
       if Configuration.cache? and Configuration.cache.cached?(:info, params)
         raw = Configuration.cache.get_query(:info, params)
       else
@@ -107,8 +106,8 @@ module Suitcase
     # session - A Session with session data stored in it.
     #
     # Returns an Array of Hotels.
-    def self.find_by_ids(ids, session)
-      params = { hotelIdList: ids.join(",") }
+    def self.find_by_ids(info, session)
+      params = { hotelIdList: info[:ids].join(",") }.merge!(info.reject{|k,v| k == :ids})
 
       if Configuration.cache? and Configuration.cache.cached?(:list, params)
         raw = Configuration.cache.get_query(:list, params)
