@@ -277,7 +277,8 @@ module Suitcase
     def rooms(info)
       params = { rooms: [{adults: 1, children_ages: []}] }.merge(info)
       params[:rooms].each_with_index do |room, n|
-        params["room#{n+1}"] = room[:adults].to_s + "," + (room[:children_ages].join(",") if room[:children_ages])
+        params["room#{n+1}"] = room[:adults].to_s
+        params["room#{n+1}"] += "," + room[:children_ages].join(",") if room[:children_ages]
       end
       params["arrivalDate"] = info[:arrival]
       params["departureDate"] = info[:departure]
