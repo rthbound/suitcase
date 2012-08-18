@@ -7,8 +7,9 @@ module Suitcase
                     :surcharge_total, :nightly_rate_total, :average_base_rate,
                     :average_rate, :max_nightly_rate, :currency_code, :value_adds,
                     :room_type_description, :price_breakdown, :total_price,
-                    :average_nightly_rate, :promo, :arrival, :departure, :rooms,
-                    :bed_types, :cancellation_policy, :non_refundable,
+                    :average_nightly_rate, :promo, :promo_description,
+                    :arrival, :departure, :rooms, :bed_types,
+                    :cancellation_policy, :non_refundable,
                     :guarantee_required, :deposit_required, :surcharges,
                     :rate_description, :raw, :rate_change, :guarantee_only
 

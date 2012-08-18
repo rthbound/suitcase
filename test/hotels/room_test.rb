@@ -9,8 +9,8 @@ describe Suitcase::Hotel::Room do
   non_refundable occupancy quoted_occupancy min_guest_age total surcharge_total
   average_base_rate average_base_rate average_rate max_nightly_rate
   currency_code value_adds room_type_description price_breakdown total_price
-  average_nightly_rate promo rate_key hotel_id supplier_type bed_types
-  rooms).each do |attribute|
+  average_nightly_rate promo promo_description rate_key hotel_id
+  supplier_type bed_types rooms).each do |attribute|
     it "has an attr_accessor for #{attribute}" do
       @room.must_respond_to attribute.to_sym
       @room.must_respond_to (attribute + "=").to_sym
