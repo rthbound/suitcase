@@ -147,6 +147,20 @@ module Suitcase
         params.delete(:location)
       end
 
+      if info[:arrival] && info[:departure]
+        params["arrivalDate"] = info[:arrival]
+        params["departureDate"] = info[:departure]
+        params.delete(:arrival)
+        params.delete(:departure)
+
+        params[:rooms] = info[:rooms] || [{ adults: 1 }]
+        params[:rooms].each_with_index do |room, n|
+          params["room#{n+1}"] = room[:adults].to_s + ","
+          params["room#{n+1}"] += room[:children_ages].join(",") if room[:children_ages]
+        end
+        params.delete(:rooms)
+      end
+
       amenities = params[:amenities] ? params[:amenities].map {|amenity| 
         AMENITIES[amenity] 
       }.join(",") : nil
