@@ -23,9 +23,11 @@ describe Suitcase::Hotel do
     it "returns available hotels if arrival and departure are passed in" do
       hotels = Suitcase::Hotel.find(location: "London, UK",
                                     arrival: "10/13/2013",
-                                    departure: "10/15/2013")
+                                    departure: "10/15/2013",
+                                    results: 1)
       hotels.must_be_kind_of(Array)
       hotels.first.must_be_kind_of(Suitcase::Hotel)
+      hotels.first.raw["HotelListResponse"]["moreResultsAvailable"].must_equal(true)
     end
 
     it "returns multiple Hotels if a location is passed in" do

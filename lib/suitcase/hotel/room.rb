@@ -69,9 +69,9 @@ module Suitcase
         params["address2"] = info[:address2] if info[:address2]
         params["address3"] = info[:address3] if info[:address3]
         params["city"] = info[:city]
+        params.merge!(parameterize_rooms(@rooms))
         @rooms.each_with_index do |room, index|
           index += 1
-          params["room#{index}"] = "#{room[:adults].to_s},#{room[:children_ages].join(",")}"
           params["room#{index}FirstName"] = room[:first_name] || params["firstName"] # defaults to the billing
           params["room#{index}LastName"] = room[:last_name] || params["lastName"] # person's name
           params["room#{index}BedTypeId"] = room[:bed_type].id if @supplier_type == "E"

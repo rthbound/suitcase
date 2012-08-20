@@ -192,6 +192,18 @@ module Suitcase
                               Configuration.hotel_shared_secret + 
                               Time.now.to_i.to_s)
       end
+
+      # Internal: Build a rooms parameter given an array of hashes
+      #
+      # Returns the rooms parameters hash
+      def parameterize_rooms(rooms)
+        params = {}
+        rooms.each_with_index do |room, n|
+          params["room#{n+1}"] = room[:adults].to_s
+          params["room#{n+1}"] += "," + room[:children_ages].join(",") if room[:children_ages]
+        end
+        params
+      end
     end
   end
 end
