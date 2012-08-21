@@ -137,14 +137,18 @@ module Suitcase
     # Returns an Array of Hotels.
     def self.find_by_info(info)
       params = info.dup
-      params["numberOfResults"] = params[:results] ? params[:results] : 10
-      params.delete(:results)
-      if params[:destination_id]
-        params["destinationId"] = params[:destination_id]
-        params.delete(:destination_id)
-      elsif params[:location]
-        params["destinationString"] = params[:location]
-        params.delete(:location)
+
+      # Don't parse any params if using EAN's pagination
+      unless info.keys.any?{ |k| [:cacheKey].include?(k) }
+        params["numberOfResults"] = params[:results] ? params[:results] : 10
+        params.delete(:results)
+        if params[:destination_id]
+          params["destinationId"] = params[:destination_id]
+          params.delete(:destination_id)
+        elsif params[:location]
+          params["destinationString"] = params[:location]
+          params.delete(:location)
+        end
       end
 
       amenities = params[:amenities] ? params[:amenities].map {|amenity| 
