@@ -139,7 +139,7 @@ module Suitcase
       params = info.dup
 
       # Don't parse any params if using EAN's pagination
-      unless params.keys.any?{ |k| [:cache_key, :cacheKey].include?(k) }
+      unless params.symbolize_keys.keys.any?{ |k| [:cache_key, :cacheKey].include?(k) }
         params["numberOfResults"] = params[:results] ? params[:results] : 10
         params.delete(:results)
         if params[:destination_id]
