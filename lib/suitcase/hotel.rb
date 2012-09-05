@@ -122,9 +122,9 @@ module Suitcase
       end
       update_session(raw, session)
 
-      [split(raw)].flatten.map do |hotel_data|
+      [split(raw)].flatten.each_with_index do |hotel_data, i|
         h = Hotel.new(parse_information(hotel_data))
-        h.raw = raw
+        h.raw = raw if i == 0
         h
       end
     end
@@ -165,9 +165,9 @@ module Suitcase
           Configuration.cache.save_query(:list, params, parsed)
         end
       end
-      hotels = [split(parsed)].flatten.map do |hotel_data|
+      hotels = [split(parsed)].each_with_index do |hotel_data, i|
         h = Hotel.new(parse_information(hotel_data))
-        h.raw = parsed
+        h.raw = parsed if i == 0
         h
       end
       update_session(parsed, info[:session])
