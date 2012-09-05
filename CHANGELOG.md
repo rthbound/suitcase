@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.7.1
+-----
+* Avoid merging extra search parameters when `:cacheKey` or `:cache_key` are detected
+
 1.7.0
 -----
 
