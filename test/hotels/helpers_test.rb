@@ -49,4 +49,12 @@ describe Suitcase::Hotel::Helpers do
       signature.must_equal(Digest::MD5.hexdigest("abc12310"))
     end
   end
+
+  describe "#parameterize_rooms" do
+    it "returns a hash of room parameters" do
+      rooms = [{adults: 1}, {adults: 2, children_ages: [3, 5]}]
+      params = Dummy.parameterize_rooms(rooms)
+      params.must_equal({ "room1" => "1", "room2" => "2,3,5" })
+    end
+  end
 end

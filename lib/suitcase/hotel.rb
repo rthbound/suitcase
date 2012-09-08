@@ -151,6 +151,16 @@ module Suitcase
         end
       end
 
+      if info[:arrival] && info[:departure]
+        params["arrivalDate"] = info[:arrival]
+        params["departureDate"] = info[:departure]
+        params.delete(:arrival)
+        params.delete(:departure)
+
+        params.merge!(parameterize_rooms(info[:rooms] || [{ adults: 1 }]))
+        params.delete(:rooms)
+      end
+
       amenities = params[:amenities] ? params[:amenities].map {|amenity| 
         AMENITIES[amenity] 
       }.join(",") : nil
@@ -281,9 +291,8 @@ module Suitcase
     # Returns an Array of Rooms.
     def rooms(info)
       params = { rooms: [{adults: 1, children_ages: []}] }.merge(info)
-      params[:rooms].each_with_index do |room, n|
-        params["room#{n+1}"] = room[:adults].to_s + "," + (room[:children_ages].join(",") if room[:children_ages])
-      end
+      params.merge!(Hotel.parameterize_rooms(params[:rooms]))
+      params.delete(:rooms)
       params["arrivalDate"] = info[:arrival]
       params["departureDate"] = info[:departure]
       params["includeDetails"] = true
