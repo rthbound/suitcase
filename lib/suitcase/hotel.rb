@@ -229,7 +229,7 @@ module Suitcase
         parsed_info[:number_of_rooms] = parsed["HotelInformationResponse"]["HotelDetails"]["numberOfRooms"]
         parsed_info[:number_of_floors] = parsed["HotelInformationResponse"]["HotelDetails"]["numberOfFloors"]
       end
-      if parsed["locationDescription"]
+      if summary["locationDescription"]
         parsed_info[:location_description] = summary["locationDescription"]
       end
       parsed_info[:short_description] = summary["shortDescription"]
