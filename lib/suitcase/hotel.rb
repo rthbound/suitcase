@@ -40,7 +40,7 @@ module Suitcase
                   :location_description, :short_description,
                   :hotel_in_destination, :proximity_distance,
                   :property_description, :number_of_floors, :number_of_rooms,
-                  :deep_link, :tripadvisor_rating, :tripadvisor_rating_url, :general_policies,
+                  :deep_link, :tripadvisor_rating, :tripadvisor_rating_url, :tripadvisor_review_count, :general_policies,
                   :checkin_instructions, :general_policies, :raw
 
     # Internal: Initialize a new Hotel.
@@ -226,6 +226,7 @@ module Suitcase
         proximity_distance: proximity_distance,
         tripadvisor_rating: summary["tripAdvisorRating"],
         tripadvisor_rating_url: summary["tripAdvisorRatingUrl"],
+        tripadvisor_review_count: summary["tripAdvisorReviewCount"],
         deep_link: summary["deepLink"]
       )
       parsed_info[:amenities] = parsed["HotelInformationResponse"]["PropertyAmenities"]["PropertyAmenity"].map do |x|
