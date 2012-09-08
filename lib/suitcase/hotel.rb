@@ -122,11 +122,10 @@ module Suitcase
       end
       update_session(raw, session)
 
-      [split(raw)].flatten.each_with_index do |hotel_data, i|
+      [split(raw)].flatten.map do |hotel_data|
         h = Hotel.new(parse_information(hotel_data))
-        h.raw = raw if i == 0
         h
-      end
+      end;hotels.first.raw = parsed
     end
 
     # Public: Find a hotel by info other than it's id.
@@ -139,7 +138,7 @@ module Suitcase
       params = info.dup
 
       # Don't parse any params if using EAN's pagination
-      unless params.symbolize_keys.keys.any?{ |k| [:cache_key, :cacheKey].include?(k) }
+      unless params.keys.any?{ |k| [:cache_key, :cacheKey].include?(k.to_sym) }
         params["numberOfResults"] = params[:results] ? params[:results] : 10
         params.delete(:results)
         if params[:destination_id]
@@ -179,11 +178,10 @@ module Suitcase
           Configuration.cache.save_query(:list, params, parsed)
         end
       end
-      hotels = [split(parsed)].each_with_index do |hotel_data, i|
+      hotels = [split(parsed)].flatten.map do |hotel_data|
         h = Hotel.new(parse_information(hotel_data))
-        h.raw = parsed if i == 0
-        h
-      end
+      end;hotels.first.raw = parsed
+      
       update_session(parsed, info[:session])
 
       info[:results] ? hotels[0..(info[:results]-1)] : hotels
