@@ -3,9 +3,9 @@ $:.push File.expand_path("../lib", __FILE__)
 require "suitcase/version"
 
 Gem::Specification.new do |s|
-  s.name        = "suitcase-rthbound"
+  s.name        = "rthbound-suitcase"
   s.version     = Suitcase::VERSION
-  s.authors     = ["Walter Nelson"]
+  s.authors     = ["Walter Nelson", "Tad Hosford"]
   s.email       = ["tad@isotope11.com"]
   s.homepage    = "http://github.com/rthbound/suitcase"
   s.summary     = %q{Locates available hotels and rental cars through Expedia and Hotwire.  This is a fork of Walter Nelson's gem - suitcase}
