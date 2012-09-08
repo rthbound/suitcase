@@ -7,8 +7,9 @@ module Suitcase
                     :surcharge_total, :nightly_rate_total, :average_base_rate,
                     :average_rate, :max_nightly_rate, :currency_code, :value_adds,
                     :room_type_description, :price_breakdown, :total_price,
-                    :average_nightly_rate, :promo, :arrival, :departure, :rooms,
-                    :bed_types, :cancellation_policy, :non_refundable,
+                    :average_nightly_rate, :promo, :promo_description,
+                    :arrival, :departure, :rooms, :bed_types,
+                    :cancellation_policy, :non_refundable,
                     :guarantee_required, :deposit_required, :surcharges,
                     :rate_description, :raw, :rate_change, :guarantee_only
 
@@ -68,9 +69,9 @@ module Suitcase
         params["address2"] = info[:address2] if info[:address2]
         params["address3"] = info[:address3] if info[:address3]
         params["city"] = info[:city]
+        params.merge!(parameterize_rooms(@rooms))
         @rooms.each_with_index do |room, index|
           index += 1
-          params["room#{index}"] = "#{room[:adults].to_s},#{room[:children_ages].join(",")}"
           params["room#{index}FirstName"] = room[:first_name] || params["firstName"] # defaults to the billing
           params["room#{index}LastName"] = room[:last_name] || params["lastName"] # person's name
           params["room#{index}BedTypeId"] = room[:bed_type].id if @supplier_type == "E"
