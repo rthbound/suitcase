@@ -122,10 +122,11 @@ module Suitcase
       end
       update_session(raw, session)
 
-      [split(raw)].flatten.map do |hotel_data|
+      hotels = [split(raw)].flatten.map do |hotel_data|
         h = Hotel.new(parse_information(hotel_data))
         h
-      end;hotels.first.raw = parsed
+      end;hotels.first.raw = raw
+      hotels
     end
 
     # Public: Find a hotel by info other than it's id.
@@ -178,6 +179,7 @@ module Suitcase
           Configuration.cache.save_query(:list, params, parsed)
         end
       end
+
       hotels = [split(parsed)].flatten.map do |hotel_data|
         h = Hotel.new(parse_information(hotel_data))
       end;hotels.first.raw = parsed

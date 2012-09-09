@@ -6,8 +6,8 @@
 # Or configure with a block:
 
 Suitcase.configure do |config|
-  config.hotel_api_key = ""
-  config.hotel_cid = ""
+  config.hotel_api_key = ENV['EAN_KEY']
+  config.hotel_cid = ENV['EAN_CID']
   
   config.hotwire_api_key = ""
   # config.hotel_shared_secret = "none"
