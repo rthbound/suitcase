@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Suitcase::VERSION
   s.authors     = ["Walter Nelson"]
   s.email       = ["walter.john.nelson@gmail.com"]
-  s.homepage    = "http://github.com/thoughtfusion/suitcase"
+  s.homepage    = "http://github.com/walternelson/suitcase"
   s.summary     = %q{Locates available hotels and rental cars through Expedia and Hotwire}
   s.description = %q{Ruby library that utilizes the EAN (Expedia.com) API for locating available hotels and the Hotwire API for rental cars.}
 
